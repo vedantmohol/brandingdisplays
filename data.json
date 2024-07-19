@@ -1,0 +1,50 @@
+{
+  "homeTextAreaContent": "Let's Signage",
+  "homeImages": [
+    "/uploads/1721283105910.jpg",
+    "/uploads/1721283119469.png",
+    "/uploads/1721283137628.png"
+  ],
+  "homeTexts": [
+    "Choose \"Branding Displays\"\nBRAND VISIBILITY MATTERS !",
+    "Build Your Brand with Us\nTotal signage solution from brief to execution",
+    "Road Signage Mapping\nRoad Signage mapping as per IRC standard\nRetro reflective signage"
+  ],
+  "aboutUsTextAreaContent": "About Us Content",
+  "aboutUsImage": "/about-us-image.jpg",
+  "aboutUsText": "About Us Text",
+  "portfolioTextAreaContent": "Portfolio ",
+  "portfolioItems": [
+    {
+      "text": "Roof Top Signage/Sky Sign\nIf customers can’t find it, it doesn’t exist. Clearly list and describe the services you offer. Also, be sure to showcase a premium service",
+      "image": "/uploads/1721283226419.png"
+    },
+    {
+      "text": "Internal Branding\nInternal Signages and Branding help way findings and Employee interactive graphics leeps the environment working friendly.",
+      "image": "/uploads/1721283239948.png"
+    },
+    {
+      "text": "Road Safety Signage\nAre your customers raving about you on social media? Share their great stories to help turn potential customers into loyal ones.",
+      "image": "/uploads/1721283250889.png"
+    },
+    {
+      "text": "Graphics Design Solution\nRunning a holiday sale or weekly special? Definitely promote it here to get customers excited about getting a sweet deal.",
+      "image": "/uploads/1721283276501.png"
+    },
+    {
+      "text": "Special Purpose Display\n Audiance had entered a store or business they had never visited before based simply on its signs”",
+      "image": "/uploads/1721283286132.png"
+    },
+    {
+      "text": "Customized Signage\nHappy Clients. Customers have questions, you have answers. Display the most frequently asked questions, so everybody benefits.",
+      "image": "/uploads/1721283294793.png"
+    }
+  ],
+  "aboutTextAreaContent": "About Us ",
+  "aboutText": "About Us Content here .\nBranding Displays Since 2014!\n100+ Signage work done till now \nLorem ipsum dolor sit, amet consectetur adipisicing elit. Id, quis ipsa, reiciendis sed minus assumenda inventore dignissimos repellat dolorem aut, consectetur unde corrupti amet voluptatum iure? Cum, id. Ab mollitia harum, tempora debitis atque nostrum ex pariatur quidem facere corporis!\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, quis ipsa, reiciendis sed minus assumenda inventore dignissimos repellat dolorem aut, consectetur unde corrupti amet voluptatum iure? Cum, id. Ab mollitia harum, tempora debitis atque nostrum ex pariatur quidem facere corporis!\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, quis ipsa, reiciendis sed minus assumenda inventore dignissimos repellat dolorem aut, consectetur unde corrupti amet voluptatum iure? Cum, id. Ab mollitia harum, tempora debitis atque nostrum ex pariatur quidem facere corporis!\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, quis ipsa, reiciendis sed minus assumenda inventore dignissimos repellat dolorem aut, consectetur unde corrupti amet voluptatum iure? Cum, id. Ab mollitia harum, tempora debitis atque nostrum ex pariatur quidem facere corporis!\n    ",
+  "footerHeading": "Branding Displays",
+  "footerMainContent": "Shade No-1, Dhone ground Jijai Garden .Warje\ndp@brandingdisplays.com , 8149723465",
+  "footerSubContent1": "Copyright © 2024 Branding Displays - All Rights Reserved.",
+  "footerSubContent2": "Branding Displays Powered by vedant.1314",
+  "aboutImage": "/uploads/1721283190644.jpg"
+}
