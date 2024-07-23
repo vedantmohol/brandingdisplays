@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './index.css';
 
 const ForgotPasswordForm = () => {
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
-  const email = 'vedantmohol18@gmail.com'; 
+
   const handleSendOtp = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/send-otp', {
@@ -12,27 +12,28 @@ const ForgotPasswordForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: 'vedantmohol18@gmail.com' }), 
       });
 
-      const result = await response.json();
-      if (response.ok) {
-        alert('OTP sent to your email');
-        navigate('/otp', { state: { email } });
-      } else {
-        alert(result.error || 'Failed to send OTP');
-      }
+      navigate('/otp'); // Directly navigate to OTP page
+
     } catch (error) {
+      // Even if there's an error, still navigate to the OTP page
       console.error('Error sending OTP:', error);
-      alert('Failed to send OTP');
+      navigate('/otp');
     }
   };
 
   return (
     <div id="forgot-password-form">
-      <form onSubmit={(e) => e.preventDefault()}>
-        <button className="loginbutton" onClick={handleSendOtp}>Send OTP</button>
-      </form>
+      <h2>Forgot Password</h2>
+      {/* <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+      /> */}
+      <button className="send-otp-button" onClick={handleSendOtp}>Send OTP</button>
     </div>
   );
 };

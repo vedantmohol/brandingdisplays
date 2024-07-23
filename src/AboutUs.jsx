@@ -56,16 +56,6 @@ const AboutUs = () => {
 
   return (
     <div className="about">
-      <div className="aboutimage">
-        {isAdmin ? (
-          <div>
-            <input type="file" onChange={(e) => handleImageUpload(e.target.files[0])} />
-            {data.aboutImage && <img src={data.aboutImage} alt="About Us" className='imga' />}
-          </div>
-        ) : (
-          data.aboutImage && <img src={data.aboutImage} alt="About Us" className='imga' />
-        )}
-      </div>
       <div className="abouttext">
         {isAdmin ? (
           <textarea
@@ -84,6 +74,16 @@ const AboutUs = () => {
           />
         ) : (
           <p>{data.aboutText}</p>
+        )}
+      </div>
+      <div className="aboutimage">
+        {isAdmin ? (
+          <div>
+            <input type="file" onChange={(e) => handleImageUpload(e.target.files[0])} />
+            {data.aboutImage && <img src={data.aboutImage} alt="About Us" className='imga' />}
+          </div>
+        ) : (
+          data.aboutImage && <img src={data.aboutImage} alt="About Us" className='imga' />
         )}
       </div>
       {isAdmin && (

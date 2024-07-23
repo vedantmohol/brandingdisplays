@@ -11,7 +11,7 @@ const AdminForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name === 'admin' && password === 'password') {
+    if (name === 'prasanna' && password === '@prvdm2024') {
       setIsAdmin(true);
       navigate('/');
     } else {

@@ -153,6 +153,7 @@
   margin: 10px 0;
   text-align: center;
   font-size: 1.6em;
+  font-weight: 500;
 }
 
 .main-image {
@@ -261,6 +262,7 @@
   padding: 10px;
   box-sizing: border-box;
   font-size: 1.5em;
+  font-weight: 400;
 }
 
 .aboutimage {
@@ -302,10 +304,6 @@ html, body {
   height: 100%;
   margin: 0;
 }
-
-/* .portfolio {
-  margin-top: 90px;
-} */
 
 .portfoliotext {
   text-align: center;
@@ -379,6 +377,42 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center; 
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .portfolio-item {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .portfolio-item-content {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .portfolio-item p,
+  .portfolio-item textarea {
+    padding: 20px 0;
+  }
+
+  .portfoliotext,
+  .portfolio-item .extra-textarea {
+    font-size: 1.2em;
+  }
+
+  .portfolio-item.reverse {
+    flex-direction: column;
+  }
 }
 
 /* Enquiry Form */
@@ -538,7 +572,8 @@ input[type="email"] {
   border-radius: 5px;
 }
 
-button.loginbutton {
+button.loginbutton,
+button.send-otp-button {
   width: 100%;
   padding: 10px;
   background-color: #007bff;
@@ -548,8 +583,11 @@ button.loginbutton {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-button.loginbutton:hover {
+button.send-otp-button{
+  margin-top: 80px;
+}
+button.loginbutton:hover,
+button.send-otp-button:hover {
   background-color: #0056b3;
 }
 

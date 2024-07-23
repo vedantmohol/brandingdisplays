@@ -4,6 +4,9 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const https = require('https');
+const querystring = require('querystring');
+const crypto = require('crypto');
 
 const app = express();
 app.use(cors());
@@ -51,36 +54,154 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   res.json({ filePath: `/uploads/${req.file.filename}` });
 });
 
-app.post('/api/send-email', async (req, res) => {
-  const { name, phone, email, message } = req.body;
+let otps = {}; // Store OTPs temporarily
+const userPasswords = {};
 
-  try {
-    const formData = new URLSearchParams();
-    formData.append('access_key', 'YOUR_ACCESS_KEY_HERE');
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('email', email);
-    formData.append('message', message);
+function generateOtp() {
+  return crypto.randomInt(1000, 9999).toString();
+}
 
-    // Dynamic import of node-fetch
-    const fetch = await import('node-fetch');
+function sendOtpEmail(email, otp, res) {
+  const postData = querystring.stringify({
+    access_key: '2ee767f0-da2f-492a-bdab-fd378eac9f2a',
+    email: email,
+    subject: 'Your OTP Code',
+    message: `Your OTP code is ${otp}`
+  });
 
-    const response = await fetch.default('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData,
+  const options = {
+    hostname: 'api.web3forms.com',
+    port: 443,
+    path: '/submit',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': postData.length
+    }
+  };
+
+  const request = https.request(options, (response) => {
+    let data = '';
+
+    response.on('data', (chunk) => {
+      data += chunk;
     });
 
-    const data = await response.json();
+    response.on('end', () => {
+      try {
+        const parsedData = JSON.parse(data);
+        if (parsedData.success) {
+          res.status(200).json({ message: 'OTP sent successfully' });
+        } else {
+          console.error('Error from Web3Forms:', parsedData.message);
+          res.status(500).json({ error: parsedData.message });
+        }
+      } catch (error) {
+        console.error('Error parsing JSON:', data);
+        res.status(500).json({ error: 'Error sending OTP' });
+      }
+    });
+  });
 
-    if (data.success) {
-      res.status(200).json({ message: 'Email sent successfully' });
-    } else {
-      res.status(500).json({ error: data.message });
-    }
-  } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Error sending email' });
+  request.on('error', (e) => {
+    console.error('Error sending OTP:', e);
+    res.status(500).json({ error: 'Error sending OTP' });
+  });
+
+  request.write(postData);
+  request.end();
+}
+
+const hardcodedEmail = 'vedantmohol18@gmail.com';
+
+app.post('/api/send-otp', (req, res) => {
+  const otp = generateOtp();
+  otps[hardcodedEmail] = otp;
+  sendOtpEmail(hardcodedEmail, otp, res);
+});
+
+app.post('/api/verify-otp', (req, res) => {
+  const { otp } = req.body;
+  if (otps[hardcodedEmail] && otps[hardcodedEmail] === otp) {
+    delete otps[hardcodedEmail];
+    res.status(200).json({ message: 'OTP verified successfully' });
+  } else {
+    res.status(400).json({ error: 'Invalid OTP' });
   }
+});
+
+app.post('/api/resend-otp', (req, res) => {
+  const otp = generateOtp();
+  otps[hardcodedEmail] = otp;
+  sendOtpEmail(hardcodedEmail, otp, res);
+});
+
+app.post('/api/reset-password', (req, res) => {
+  const { newpassword } = req.body;
+  if (newpassword) {
+    userPasswords[hardcodedEmail] = newpassword; // Store the password (for demonstration purposes)
+    res.status(200).json({ message: 'Password reset successfully' });
+  } else {
+    res.status(400).json({ error: 'Password is required' });
+  }
+});
+
+app.post('/api/send-email', (req, res) => {
+  const { name, phone, email, message } = req.body;
+
+  if (!name || !phone || !email || !message) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  const postData = querystring.stringify({
+    access_key: '2ee767f0-da2f-492a-bdab-fd378eac9f2a',
+    name: name,
+    phone: phone,
+    email: email,
+    message: message
+  });
+
+  const options = {
+    hostname: 'api.web3forms.com',
+    port: 443,
+    path: '/submit',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': postData.length
+    }
+  };
+
+  const request = https.request(options, (response) => {
+    let data = '';
+
+    response.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    response.on('end', () => {
+      try {
+        const parsedData = JSON.parse(data);
+        if (parsedData.success) {
+          res.status(200).json({ message: 'Email sent successfully' });
+        } else {
+          console.error('Error from Web3Forms:', parsedData.message);
+          res.status(500).json({ error: parsedData.message });
+        }
+      } catch (error) {
+        console.error('Error parsing JSON:', data);
+        res.status(500).json({ error: 'Error sending email' });
+      }
+    });
+  });
+
+  request.on('error', (e) => {
+    console.error('Error sending email:', e);
+    res.status(500).json({ error: 'Error sending email' });
+  });
+
+  request.write(postData);
+  request.end();
 });
 
 const PORT = process.env.PORT || 5000;
