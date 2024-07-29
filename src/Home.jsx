@@ -12,7 +12,7 @@ const Home = () => {
   const navigate = useNavigate();//hook used to programmatically navigate between different routes.
 
   useEffect(() => {// hook to perform side effects in functional components(data fetching)
-    fetch('http://localhost:5000/api/data')//GET request
+    fetch('https://brandingdisplays.onrender.com/api/data')//GET request
       .then((response) => response.json())
       .then((data) => setData(data));
   }, []);//effect runs only once after the initial render
@@ -21,7 +21,7 @@ const Home = () => {
     const formData = new FormData();
     formData.append('file', file);//appends the image file to the FormData object under the key 'file'
 
-    fetch('http://localhost:5000/api/upload', {
+    fetch('https://brandingdisplays.onrender.com/api/upload', {
       method: 'POST',
       body: formData//sets the body of the request to the formData object containing the file to be uploaded.
     })
@@ -40,7 +40,7 @@ const Home = () => {
   };
 
   const handleSave = () => {
-    fetch('http://localhost:5000/api/data', {//The endpoint where the data is being sent
+    fetch('https://brandingdisplays.onrender.com/api/data', {//The endpoint where the data is being sent
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

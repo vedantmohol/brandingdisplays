@@ -7,7 +7,7 @@ const OtpForm = () => {
 
   const handleVerifyOtp = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/verify-otp', {
+      const response = await fetch('https://brandingdisplays.onrender.com/api/verify-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

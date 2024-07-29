@@ -11,7 +11,7 @@ const Footer = () => {
   });
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/data')
+    fetch('https://brandingdisplays.onrender.com/api/data')
       .then((response) => response.json())
       .then((data) => setData(data));
   }, []);
@@ -21,7 +21,7 @@ const Footer = () => {
   };
 
   const handleSave = () => {
-    fetch('http://localhost:5000/api/data', {
+    fetch('https://brandingdisplays.onrender.com/api/data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ const AboutUs = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/data')
+    fetch('https://brandingdisplays.onrender.com/api/data')
       .then((response) => response.json())
       .then((data) => setData(data));
   }, []);
@@ -21,7 +21,7 @@ const AboutUs = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch('http://localhost:5000/api/upload', {
+    fetch('https://brandingdisplays.onrender.com/api/upload', {
       method: 'POST',
       body: formData
     })
@@ -32,7 +32,7 @@ const AboutUs = () => {
   };
 
   const handleSave = () => {
-    fetch('http://localhost:5000/api/data', {
+    fetch('https://brandingdisplays.onrender.com/api/data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
